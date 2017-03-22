@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewProcesoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_inicioProceso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.inicioProceso}" title="#{bundle.ViewProcesoDetalleTitle_inicioProceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_finalProceso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.finalProceso}" title="#{bundle.ViewProcesoDetalleTitle_finalProceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_estadoproceso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.estadoproceso}" title="#{bundle.ViewProcesoDetalleTitle_estadoproceso}"/>
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_encargadoproceso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.encargadoproceso}" title="#{bundle.ViewProcesoDetalleTitle_encargadoproceso}"/>
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_paso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.paso}" title="#{bundle.ViewProcesoDetalleTitle_paso}"/>
+                    <h:outputText value="#{bundle.ViewProcesoDetalleLabel_proceso}"/>
+                    <h:outputText value="#{procesoDetalleController.selected.proceso}" title="#{bundle.ViewProcesoDetalleTitle_proceso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{procesoDetalleController.destroyAndView}" value="#{bundle.ViewProcesoDetalleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewProcesoDetalleEditLink}"/>
+                <br />
+                <h:commandLink action="#{procesoDetalleController.prepareCreate}" value="#{bundle.ViewProcesoDetalleCreateLink}" />
+                <br />
+                <h:commandLink action="#{procesoDetalleController.prepareList}" value="#{bundle.ViewProcesoDetalleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewProcesoDetalleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCasoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCasoLabel_casoPK_idCaso}" for="casoPK_idCaso" />
+                    <h:inputText id="casoPK_idCaso" value="#{casoController.selected.casoPK.idCaso}" title="#{bundle.CreateCasoTitle_casoPK_idCaso}" required="true" requiredMessage="#{bundle.CreateCasoRequiredMessage_casoPK_idCaso}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoLabel_nombrecaso}" for="nombrecaso" />
+                    <h:inputText id="nombrecaso" value="#{casoController.selected.nombrecaso}" title="#{bundle.CreateCasoTitle_nombrecaso}" required="true" requiredMessage="#{bundle.CreateCasoRequiredMessage_nombrecaso}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoLabel_descripcioncaso}" for="descripcioncaso" />
+                    <h:inputText id="descripcioncaso" value="#{casoController.selected.descripcioncaso}" title="#{bundle.CreateCasoTitle_descripcioncaso}" required="true" requiredMessage="#{bundle.CreateCasoRequiredMessage_descripcioncaso}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoLabel_solicitud}" for="solicitud" />
+                    <h:selectOneMenu id="solicitud" value="#{casoController.selected.solicitud}" title="#{bundle.CreateCasoTitle_solicitud}" required="true" requiredMessage="#{bundle.CreateCasoRequiredMessage_solicitud}">
+                        <f:selectItems value="#{solicitudController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{casoController.create}" value="#{bundle.CreateCasoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{casoController.prepareList}" value="#{bundle.CreateCasoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCasoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

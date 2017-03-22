@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListProcesoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListProcesoDetalleEmpty}" rendered="#{procesoDetalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{procesoDetalleController.items.rowCount > 0}">
+                    <h:outputText value="#{procesoDetalleController.pagination.pageFirstItem + 1}..#{procesoDetalleController.pagination.pageLastItem + 1}/#{procesoDetalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{procesoDetalleController.previous}" value="#{bundle.Previous} #{procesoDetalleController.pagination.pageSize}" rendered="#{procesoDetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{procesoDetalleController.next}" value="#{bundle.Next} #{procesoDetalleController.pagination.pageSize}" rendered="#{procesoDetalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{procesoDetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_inicioProceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inicioProceso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_finalProceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.finalProceso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_estadoproceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadoproceso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_encargadoproceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.encargadoproceso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_paso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcesoDetalleTitle_proceso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.proceso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{procesoDetalleController.prepareView}" value="#{bundle.ListProcesoDetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{procesoDetalleController.prepareEdit}" value="#{bundle.ListProcesoDetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{procesoDetalleController.destroy}" value="#{bundle.ListProcesoDetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{procesoDetalleController.prepareCreate}" value="#{bundle.ListProcesoDetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListProcesoDetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

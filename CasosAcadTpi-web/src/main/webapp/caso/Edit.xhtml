@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCasoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCasoLabel_casoPK_idCaso}" for="casoPK_idCaso" />
+                    <h:inputText id="casoPK_idCaso" value="#{casoController.selected.casoPK.idCaso}" title="#{bundle.EditCasoTitle_casoPK_idCaso}" required="true" requiredMessage="#{bundle.EditCasoRequiredMessage_casoPK_idCaso}"/>
+                    <h:outputLabel value="#{bundle.EditCasoLabel_nombrecaso}" for="nombrecaso" />
+                    <h:inputText id="nombrecaso" value="#{casoController.selected.nombrecaso}" title="#{bundle.EditCasoTitle_nombrecaso}" required="true" requiredMessage="#{bundle.EditCasoRequiredMessage_nombrecaso}"/>
+                    <h:outputLabel value="#{bundle.EditCasoLabel_descripcioncaso}" for="descripcioncaso" />
+                    <h:inputText id="descripcioncaso" value="#{casoController.selected.descripcioncaso}" title="#{bundle.EditCasoTitle_descripcioncaso}" required="true" requiredMessage="#{bundle.EditCasoRequiredMessage_descripcioncaso}"/>
+                    <h:outputLabel value="#{bundle.EditCasoLabel_solicitud}" for="solicitud" />
+                    <h:selectOneMenu id="solicitud" value="#{casoController.selected.solicitud}" title="#{bundle.EditCasoTitle_solicitud}" required="true" requiredMessage="#{bundle.EditCasoRequiredMessage_solicitud}">
+                        <f:selectItems value="#{solicitudController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{casoController.update}" value="#{bundle.EditCasoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCasoViewLink}"/>
+                <br />
+                <h:commandLink action="#{casoController.prepareList}" value="#{bundle.EditCasoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCasoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

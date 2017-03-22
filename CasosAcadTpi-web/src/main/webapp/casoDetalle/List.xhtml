@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCasoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCasoDetalleEmpty}" rendered="#{casoDetalleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{casoDetalleController.items.rowCount > 0}">
+                    <h:outputText value="#{casoDetalleController.pagination.pageFirstItem + 1}..#{casoDetalleController.pagination.pageLastItem + 1}/#{casoDetalleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{casoDetalleController.previous}" value="#{bundle.Previous} #{casoDetalleController.pagination.pageSize}" rendered="#{casoDetalleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{casoDetalleController.next}" value="#{bundle.Next} #{casoDetalleController.pagination.pageSize}" rendered="#{casoDetalleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{casoDetalleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCasoDetalleTitle_casoDetallePK_idCasoDetalle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.casoDetallePK.idCasoDetalle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCasoDetalleTitle_encargadocaso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.encargadocaso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCasoDetalleTitle_estadocaso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estadocaso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCasoDetalleTitle_fechainiciocaso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechainiciocaso}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCasoDetalleTitle_caso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.caso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{casoDetalleController.prepareView}" value="#{bundle.ListCasoDetalleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{casoDetalleController.prepareEdit}" value="#{bundle.ListCasoDetalleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{casoDetalleController.destroy}" value="#{bundle.ListCasoDetalleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{casoDetalleController.prepareCreate}" value="#{bundle.ListCasoDetalleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCasoDetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

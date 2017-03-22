@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewRequisitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_requisitoPK_idRequisito}"/>
+                    <h:outputText value="#{requisitoController.selected.requisitoPK.idRequisito}" title="#{bundle.ViewRequisitoTitle_requisitoPK_idRequisito}"/>
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_descripcionrequisito}"/>
+                    <h:outputText value="#{requisitoController.selected.descripcionrequisito}" title="#{bundle.ViewRequisitoTitle_descripcionrequisito}"/>
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_nombrerequisito}"/>
+                    <h:outputText value="#{requisitoController.selected.nombrerequisito}" title="#{bundle.ViewRequisitoTitle_nombrerequisito}"/>
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_expiracion}"/>
+                    <h:outputText value="#{requisitoController.selected.expiracion}" title="#{bundle.ViewRequisitoTitle_expiracion}"/>
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_estadorequisito}"/>
+                    <h:outputText value="#{requisitoController.selected.estadorequisito}" title="#{bundle.ViewRequisitoTitle_estadorequisito}"/>
+                    <h:outputText value="#{bundle.ViewRequisitoLabel_tipoRequisito}"/>
+                    <h:outputText value="#{requisitoController.selected.tipoRequisito}" title="#{bundle.ViewRequisitoTitle_tipoRequisito}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{requisitoController.destroyAndView}" value="#{bundle.ViewRequisitoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewRequisitoEditLink}"/>
+                <br />
+                <h:commandLink action="#{requisitoController.prepareCreate}" value="#{bundle.ViewRequisitoCreateLink}" />
+                <br />
+                <h:commandLink action="#{requisitoController.prepareList}" value="#{bundle.ViewRequisitoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewRequisitoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

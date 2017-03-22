@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCasoDetalleRequisitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCasoDetalleRequisitoLabel_casoDetalleRequisitoPK_idCasoDetalleRequisito}" for="casoDetalleRequisitoPK_idCasoDetalleRequisito" />
+                    <h:inputText id="casoDetalleRequisitoPK_idCasoDetalleRequisito" value="#{casoDetalleRequisitoController.selected.casoDetalleRequisitoPK.idCasoDetalleRequisito}" title="#{bundle.EditCasoDetalleRequisitoTitle_casoDetalleRequisitoPK_idCasoDetalleRequisito}" required="true" requiredMessage="#{bundle.EditCasoDetalleRequisitoRequiredMessage_casoDetalleRequisitoPK_idCasoDetalleRequisito}"/>
+                    <h:outputLabel value="#{bundle.EditCasoDetalleRequisitoLabel_casoDetalle}" for="casoDetalle" />
+                    <h:selectOneMenu id="casoDetalle" value="#{casoDetalleRequisitoController.selected.casoDetalle}" title="#{bundle.EditCasoDetalleRequisitoTitle_casoDetalle}" required="true" requiredMessage="#{bundle.EditCasoDetalleRequisitoRequiredMessage_casoDetalle}">
+                        <f:selectItems value="#{casoDetalleController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{casoDetalleRequisitoController.update}" value="#{bundle.EditCasoDetalleRequisitoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCasoDetalleRequisitoViewLink}"/>
+                <br />
+                <h:commandLink action="#{casoDetalleRequisitoController.prepareList}" value="#{bundle.EditCasoDetalleRequisitoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCasoDetalleRequisitoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPasoRequisitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPasoRequisitoEmpty}" rendered="#{pasoRequisitoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{pasoRequisitoController.items.rowCount > 0}">
+                    <h:outputText value="#{pasoRequisitoController.pagination.pageFirstItem + 1}..#{pasoRequisitoController.pagination.pageLastItem + 1}/#{pasoRequisitoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{pasoRequisitoController.previous}" value="#{bundle.Previous} #{pasoRequisitoController.pagination.pageSize}" rendered="#{pasoRequisitoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{pasoRequisitoController.next}" value="#{bundle.Next} #{pasoRequisitoController.pagination.pageSize}" rendered="#{pasoRequisitoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{pasoRequisitoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPasoRequisitoTitle_finalizado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.finalizado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPasoRequisitoTitle_paso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPasoRequisitoTitle_requisito}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.requisito}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{pasoRequisitoController.prepareView}" value="#{bundle.ListPasoRequisitoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pasoRequisitoController.prepareEdit}" value="#{bundle.ListPasoRequisitoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{pasoRequisitoController.destroy}" value="#{bundle.ListPasoRequisitoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{pasoRequisitoController.prepareCreate}" value="#{bundle.ListPasoRequisitoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPasoRequisitoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

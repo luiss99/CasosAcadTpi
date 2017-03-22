@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProcesoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProcesoLabel_procesoPK_idProceso}" for="procesoPK_idProceso" />
+                    <h:inputText id="procesoPK_idProceso" value="#{procesoController.selected.procesoPK.idProceso}" title="#{bundle.EditProcesoTitle_procesoPK_idProceso}" required="true" requiredMessage="#{bundle.EditProcesoRequiredMessage_procesoPK_idProceso}"/>
+                    <h:outputLabel value="#{bundle.EditProcesoLabel_nombreproceso}" for="nombreproceso" />
+                    <h:inputText id="nombreproceso" value="#{procesoController.selected.nombreproceso}" title="#{bundle.EditProcesoTitle_nombreproceso}" required="true" requiredMessage="#{bundle.EditProcesoRequiredMessage_nombreproceso}"/>
+                    <h:outputLabel value="#{bundle.EditProcesoLabel_descripcionproceso}" for="descripcionproceso" />
+                    <h:inputText id="descripcionproceso" value="#{procesoController.selected.descripcionproceso}" title="#{bundle.EditProcesoTitle_descripcionproceso}" required="true" requiredMessage="#{bundle.EditProcesoRequiredMessage_descripcionproceso}"/>
+                    <h:outputLabel value="#{bundle.EditProcesoLabel_caso}" for="caso" />
+                    <h:selectOneMenu id="caso" value="#{procesoController.selected.caso}" title="#{bundle.EditProcesoTitle_caso}" required="true" requiredMessage="#{bundle.EditProcesoRequiredMessage_caso}">
+                        <f:selectItems value="#{casoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{procesoController.update}" value="#{bundle.EditProcesoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProcesoViewLink}"/>
+                <br />
+                <h:commandLink action="#{procesoController.prepareList}" value="#{bundle.EditProcesoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProcesoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

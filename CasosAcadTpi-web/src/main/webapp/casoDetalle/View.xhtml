@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCasoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCasoDetalleLabel_casoDetallePK_idCasoDetalle}"/>
+                    <h:outputText value="#{casoDetalleController.selected.casoDetallePK.idCasoDetalle}" title="#{bundle.ViewCasoDetalleTitle_casoDetallePK_idCasoDetalle}"/>
+                    <h:outputText value="#{bundle.ViewCasoDetalleLabel_encargadocaso}"/>
+                    <h:outputText value="#{casoDetalleController.selected.encargadocaso}" title="#{bundle.ViewCasoDetalleTitle_encargadocaso}"/>
+                    <h:outputText value="#{bundle.ViewCasoDetalleLabel_estadocaso}"/>
+                    <h:outputText value="#{casoDetalleController.selected.estadocaso}" title="#{bundle.ViewCasoDetalleTitle_estadocaso}"/>
+                    <h:outputText value="#{bundle.ViewCasoDetalleLabel_fechainiciocaso}"/>
+                    <h:outputText value="#{casoDetalleController.selected.fechainiciocaso}" title="#{bundle.ViewCasoDetalleTitle_fechainiciocaso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewCasoDetalleLabel_caso}"/>
+                    <h:outputText value="#{casoDetalleController.selected.caso}" title="#{bundle.ViewCasoDetalleTitle_caso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{casoDetalleController.destroyAndView}" value="#{bundle.ViewCasoDetalleDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCasoDetalleEditLink}"/>
+                <br />
+                <h:commandLink action="#{casoDetalleController.prepareCreate}" value="#{bundle.ViewCasoDetalleCreateLink}" />
+                <br />
+                <h:commandLink action="#{casoDetalleController.prepareList}" value="#{bundle.ViewCasoDetalleShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCasoDetalleIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

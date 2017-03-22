@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePasoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_pasoPK_idPaso}" for="pasoPK_idPaso" />
+                    <h:inputText id="pasoPK_idPaso" value="#{pasoController.selected.pasoPK.idPaso}" title="#{bundle.CreatePasoTitle_pasoPK_idPaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_pasoPK_idPaso}"/>
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_descripcionpaso}" for="descripcionpaso" />
+                    <h:inputText id="descripcionpaso" value="#{pasoController.selected.descripcionpaso}" title="#{bundle.CreatePasoTitle_descripcionpaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_descripcionpaso}"/>
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_fechainicio}" for="fechainicio" />
+                    <h:inputText id="fechainicio" value="#{pasoController.selected.fechainicio}" title="#{bundle.CreatePasoTitle_fechainicio}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_fechainicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_fechasfinal}" for="fechasfinal" />
+                    <h:inputText id="fechasfinal" value="#{pasoController.selected.fechasfinal}" title="#{bundle.CreatePasoTitle_fechasfinal}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_fechasfinal}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_estadopaso}" for="estadopaso" />
+                    <h:inputText id="estadopaso" value="#{pasoController.selected.estadopaso}" title="#{bundle.CreatePasoTitle_estadopaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_estadopaso}"/>
+                    <h:outputLabel value="#{bundle.CreatePasoLabel_tipoPaso}" for="tipoPaso" />
+                    <h:selectOneMenu id="tipoPaso" value="#{pasoController.selected.tipoPaso}" title="#{bundle.CreatePasoTitle_tipoPaso}" required="true" requiredMessage="#{bundle.CreatePasoRequiredMessage_tipoPaso}">
+                        <f:selectItems value="#{tipoPasoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pasoController.create}" value="#{bundle.CreatePasoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pasoController.prepareList}" value="#{bundle.CreatePasoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePasoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

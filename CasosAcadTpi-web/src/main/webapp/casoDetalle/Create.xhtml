@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCasoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCasoDetalleLabel_casoDetallePK_idCasoDetalle}" for="casoDetallePK_idCasoDetalle" />
+                    <h:inputText id="casoDetallePK_idCasoDetalle" value="#{casoDetalleController.selected.casoDetallePK.idCasoDetalle}" title="#{bundle.CreateCasoDetalleTitle_casoDetallePK_idCasoDetalle}" required="true" requiredMessage="#{bundle.CreateCasoDetalleRequiredMessage_casoDetallePK_idCasoDetalle}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoDetalleLabel_encargadocaso}" for="encargadocaso" />
+                    <h:inputText id="encargadocaso" value="#{casoDetalleController.selected.encargadocaso}" title="#{bundle.CreateCasoDetalleTitle_encargadocaso}" required="true" requiredMessage="#{bundle.CreateCasoDetalleRequiredMessage_encargadocaso}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoDetalleLabel_estadocaso}" for="estadocaso" />
+                    <h:inputText id="estadocaso" value="#{casoDetalleController.selected.estadocaso}" title="#{bundle.CreateCasoDetalleTitle_estadocaso}" required="true" requiredMessage="#{bundle.CreateCasoDetalleRequiredMessage_estadocaso}"/>
+                    <h:outputLabel value="#{bundle.CreateCasoDetalleLabel_fechainiciocaso}" for="fechainiciocaso" />
+                    <h:inputText id="fechainiciocaso" value="#{casoDetalleController.selected.fechainiciocaso}" title="#{bundle.CreateCasoDetalleTitle_fechainiciocaso}" required="true" requiredMessage="#{bundle.CreateCasoDetalleRequiredMessage_fechainiciocaso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateCasoDetalleLabel_caso}" for="caso" />
+                    <h:selectOneMenu id="caso" value="#{casoDetalleController.selected.caso}" title="#{bundle.CreateCasoDetalleTitle_caso}" required="true" requiredMessage="#{bundle.CreateCasoDetalleRequiredMessage_caso}">
+                        <f:selectItems value="#{casoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{casoDetalleController.create}" value="#{bundle.CreateCasoDetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{casoDetalleController.prepareList}" value="#{bundle.CreateCasoDetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCasoDetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

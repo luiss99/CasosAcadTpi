@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProcesoDetalleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_inicioProceso}" for="inicioProceso" />
+                    <h:inputText id="inicioProceso" value="#{procesoDetalleController.selected.inicioProceso}" title="#{bundle.CreateProcesoDetalleTitle_inicioProceso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_inicioProceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_finalProceso}" for="finalProceso" />
+                    <h:inputText id="finalProceso" value="#{procesoDetalleController.selected.finalProceso}" title="#{bundle.CreateProcesoDetalleTitle_finalProceso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_finalProceso}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_estadoproceso}" for="estadoproceso" />
+                    <h:inputText id="estadoproceso" value="#{procesoDetalleController.selected.estadoproceso}" title="#{bundle.CreateProcesoDetalleTitle_estadoproceso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_estadoproceso}"/>
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_encargadoproceso}" for="encargadoproceso" />
+                    <h:inputText id="encargadoproceso" value="#{procesoDetalleController.selected.encargadoproceso}" title="#{bundle.CreateProcesoDetalleTitle_encargadoproceso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_encargadoproceso}"/>
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_paso}" for="paso" />
+                    <h:selectOneMenu id="paso" value="#{procesoDetalleController.selected.paso}" title="#{bundle.CreateProcesoDetalleTitle_paso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_paso}">
+                        <f:selectItems value="#{pasoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProcesoDetalleLabel_proceso}" for="proceso" />
+                    <h:selectOneMenu id="proceso" value="#{procesoDetalleController.selected.proceso}" title="#{bundle.CreateProcesoDetalleTitle_proceso}" required="true" requiredMessage="#{bundle.CreateProcesoDetalleRequiredMessage_proceso}">
+                        <f:selectItems value="#{procesoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{procesoDetalleController.create}" value="#{bundle.CreateProcesoDetalleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{procesoDetalleController.prepareList}" value="#{bundle.CreateProcesoDetalleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProcesoDetalleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

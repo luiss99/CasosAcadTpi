@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPasoRequisitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPasoRequisitoLabel_finalizado}" for="finalizado" />
+                    <h:inputText id="finalizado" value="#{pasoRequisitoController.selected.finalizado}" title="#{bundle.EditPasoRequisitoTitle_finalizado}" required="true" requiredMessage="#{bundle.EditPasoRequisitoRequiredMessage_finalizado}"/>
+                    <h:outputLabel value="#{bundle.EditPasoRequisitoLabel_paso}" for="paso" />
+                    <h:selectOneMenu id="paso" value="#{pasoRequisitoController.selected.paso}" title="#{bundle.EditPasoRequisitoTitle_paso}" required="true" requiredMessage="#{bundle.EditPasoRequisitoRequiredMessage_paso}">
+                        <f:selectItems value="#{pasoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPasoRequisitoLabel_requisito}" for="requisito" />
+                    <h:selectOneMenu id="requisito" value="#{pasoRequisitoController.selected.requisito}" title="#{bundle.EditPasoRequisitoTitle_requisito}" required="true" requiredMessage="#{bundle.EditPasoRequisitoRequiredMessage_requisito}">
+                        <f:selectItems value="#{requisitoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{pasoRequisitoController.update}" value="#{bundle.EditPasoRequisitoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPasoRequisitoViewLink}"/>
+                <br />
+                <h:commandLink action="#{pasoRequisitoController.prepareList}" value="#{bundle.EditPasoRequisitoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPasoRequisitoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

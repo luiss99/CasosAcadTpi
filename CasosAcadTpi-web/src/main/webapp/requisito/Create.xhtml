@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateRequisitoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_requisitoPK_idRequisito}" for="requisitoPK_idRequisito" />
+                    <h:inputText id="requisitoPK_idRequisito" value="#{requisitoController.selected.requisitoPK.idRequisito}" title="#{bundle.CreateRequisitoTitle_requisitoPK_idRequisito}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_requisitoPK_idRequisito}"/>
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_descripcionrequisito}" for="descripcionrequisito" />
+                    <h:inputText id="descripcionrequisito" value="#{requisitoController.selected.descripcionrequisito}" title="#{bundle.CreateRequisitoTitle_descripcionrequisito}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_descripcionrequisito}"/>
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_nombrerequisito}" for="nombrerequisito" />
+                    <h:inputText id="nombrerequisito" value="#{requisitoController.selected.nombrerequisito}" title="#{bundle.CreateRequisitoTitle_nombrerequisito}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_nombrerequisito}"/>
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_expiracion}" for="expiracion" />
+                    <h:inputText id="expiracion" value="#{requisitoController.selected.expiracion}" title="#{bundle.CreateRequisitoTitle_expiracion}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_expiracion}"/>
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_estadorequisito}" for="estadorequisito" />
+                    <h:inputText id="estadorequisito" value="#{requisitoController.selected.estadorequisito}" title="#{bundle.CreateRequisitoTitle_estadorequisito}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_estadorequisito}"/>
+                    <h:outputLabel value="#{bundle.CreateRequisitoLabel_tipoRequisito}" for="tipoRequisito" />
+                    <h:selectOneMenu id="tipoRequisito" value="#{requisitoController.selected.tipoRequisito}" title="#{bundle.CreateRequisitoTitle_tipoRequisito}" required="true" requiredMessage="#{bundle.CreateRequisitoRequiredMessage_tipoRequisito}">
+                        <f:selectItems value="#{tipoRequisitoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{requisitoController.create}" value="#{bundle.CreateRequisitoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{requisitoController.prepareList}" value="#{bundle.CreateRequisitoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateRequisitoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

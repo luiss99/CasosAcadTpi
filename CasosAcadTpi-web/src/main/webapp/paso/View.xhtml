@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPasoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPasoLabel_pasoPK_idPaso}"/>
+                    <h:outputText value="#{pasoController.selected.pasoPK.idPaso}" title="#{bundle.ViewPasoTitle_pasoPK_idPaso}"/>
+                    <h:outputText value="#{bundle.ViewPasoLabel_descripcionpaso}"/>
+                    <h:outputText value="#{pasoController.selected.descripcionpaso}" title="#{bundle.ViewPasoTitle_descripcionpaso}"/>
+                    <h:outputText value="#{bundle.ViewPasoLabel_fechainicio}"/>
+                    <h:outputText value="#{pasoController.selected.fechainicio}" title="#{bundle.ViewPasoTitle_fechainicio}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPasoLabel_fechasfinal}"/>
+                    <h:outputText value="#{pasoController.selected.fechasfinal}" title="#{bundle.ViewPasoTitle_fechasfinal}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPasoLabel_estadopaso}"/>
+                    <h:outputText value="#{pasoController.selected.estadopaso}" title="#{bundle.ViewPasoTitle_estadopaso}"/>
+                    <h:outputText value="#{bundle.ViewPasoLabel_tipoPaso}"/>
+                    <h:outputText value="#{pasoController.selected.tipoPaso}" title="#{bundle.ViewPasoTitle_tipoPaso}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pasoController.destroyAndView}" value="#{bundle.ViewPasoDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPasoEditLink}"/>
+                <br />
+                <h:commandLink action="#{pasoController.prepareCreate}" value="#{bundle.ViewPasoCreateLink}" />
+                <br />
+                <h:commandLink action="#{pasoController.prepareList}" value="#{bundle.ViewPasoShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPasoIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
